@@ -12,7 +12,7 @@ public class ReservaDAO {
 	}
 	
 	public ArrayList<Reserva> consultarTodasReservas() {
-		return this.reservas;
+		return reservas;
 	}
 	
 	public Reserva consultarReservaQuarto(long nroQuarto) {
