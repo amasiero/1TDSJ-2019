@@ -1,0 +1,17 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+Servers/
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Java
+bin/
+*.class
