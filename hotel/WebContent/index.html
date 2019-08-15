@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hotel Fiap</title>
+<style type="text/css">
+	input {
+		display:block;
+		width: 350px;
+	}
+</style>
+</head>
+<body>
+	<h1>Hotel Fiap</h1>
+	<fieldset>
+		<legend>Dados da reserva:</legend>
+		<form action="reservar" method="post">
+			<input type="number" name="quarto" placeholder="Digite o número do quarto"/>
+			<input type="date" name="checkin" placeholder="Informe a data de entrada" />
+			<input type="date" name="checkout" placeholder="Informe a data de saída" />
+			<button>Reservar</button>
+		</form>
+	</fieldset>
+	<form action="reservar" method="get">
+		<button>Consultar Reservas</button>
+	</form>
+</body>
+</html>
