@@ -9,6 +9,7 @@ import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,31 +25,43 @@ public class ReservaServlet extends HttpServlet {
 	private SimpleDateFormat sdf = new SimpleDateFormat();
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		sdf.applyPattern("dd/MM/yyyy");
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body>");
-		out.println("<h1>Hotel Fiap</h1>");
-		out.println("<h2>Consultar de Reservas</h2>");
-		out.println("<table border=\"1\">");
-		out.println("<tr><td>Nro Quarto</td><td>Data de Entrada</td><td>Data de Saída</td></tr>");
-		ArrayList<Reserva> reservas = new ReservaDAO().consultarTodasReservas();
-		for (Reserva r : reservas) {
-			out.println("<tr><td>" + r.getNroQuarto() + "</td>"
-					+ "<td>" + sdf.format(r.getCheckin()) + "</td><td>"
-							+ sdf.format(r.getCheckout()) + "</td></tr>");
+
+		Cookie[] cookies = req.getCookies();
+		Cookie cookie = null;
+		if(cookies != null) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals("usuario.logado")) {
+					cookie = c;
+				}
+			}
 		}
-		out.println("</table>");
+		out.println("<h1>Hotel Fiap</h1>");
+		if (cookie != null) {
+			out.println("<h2>Consultar de Reservas</h2>");
+			out.println("<table border=\"1\">");
+			out.println("<tr><td>Nro Quarto</td><td>Data de Entrada</td><td>Data de Saída</td></tr>");
+			ArrayList<Reserva> reservas = new ReservaDAO().consultarTodasReservas();
+			for (Reserva r : reservas) {
+				out.println("<tr><td>" + r.getNroQuarto() + "</td>" + "<td>" + sdf.format(r.getCheckin()) + "</td><td>"
+						+ sdf.format(r.getCheckout()) + "</td></tr>");
+			}
+			out.println("</table>");
+		} else {
+			out.println("<h2 style=\"color:red;\">You shall not pass!</h2>");
+		}
+		out.println("<a href=\"index.html\">Voltar para Home</a>");
 		out.println("</body></html>");
 		out.flush();
 		out.close();
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		try {
 			long quarto = Long.parseLong(req.getParameter("quarto"));
@@ -57,33 +70,32 @@ public class ReservaServlet extends HttpServlet {
 			Date checkout = sdf.parse(req.getParameter("checkout"));
 			Reserva r = new Reserva(quarto, checkin, checkout);
 			ReservaBO bo = new ReservaBO();
-			
+
 			PrintWriter out = resp.getWriter();
 			String texto = "";
 			out.println("<html><body>");
-			
-			if(bo.validarCheckout(r) && bo.validarCheckinCheckout(r)) {
+
+			if (bo.validarCheckout(r) && bo.validarCheckinCheckout(r)) {
 				new ReservaDAO().adicionar(r);
 				sdf.applyPattern("dd/MM/yyyy");
-				texto = "Reserva para o quarto " + quarto + " com entrada no dia "
-						+ sdf.format(checkin) + " e saída no dia "
-						+ sdf.format(checkout) + " realizada com sucesso";
+				texto = "Reserva para o quarto " + quarto + " com entrada no dia " + sdf.format(checkin)
+						+ " e saída no dia " + sdf.format(checkout) + " realizada com sucesso";
 			} else {
 				texto = "Datas inválidas. Favor verificar se a data de checkout é maior "
 						+ "que a data de checkin e a data atual";
 			}
-			
+
 			out.println("<h1>Hotel Fiap</h1>");
 			out.println("<h2>Cadastro de Reserva</h2>");
 			out.println("<p>" + texto + "</p>");
-			
+
 			out.println("</body></html>");
 			out.flush();
 			out.close();
-			
+
 		} catch (ParseException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 
 }

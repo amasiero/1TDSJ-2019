@@ -3,26 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Hotel Fiap</title>
-<style type="text/css">
-	input {
-		display:block;
-		width: 350px;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 <body>
-	<h1>Hotel Fiap</h1>
+	<header>
+		<h1>Hotel Fiap</h1>
+		<a id="cadastrar" href="cadastro.html">Cadastre-se e seja feliz!</a>
+		<fieldset id="frm-login">
+			<legend>Entre aqui:</legend>
+			<form action="login" method="post">
+				<input type="text" name="login" placeholder="Digite seu login." />
+				<input type="password" name="senha" placeholder="Digite sua senha." />
+				<button>Enviar</button>
+			</form>
+		</fieldset>
+		<div id="logado">
+			<p>
+				Seja bem-vindo <span></span>! <a href="logout">Deslogar</a>
+			</p>
+		</div>
+	</header>
 	<fieldset>
 		<legend>Dados da reserva:</legend>
 		<form action="reservar" method="post">
-			<input type="number" name="quarto" placeholder="Digite o número do quarto"/>
-			<input type="date" name="checkin" placeholder="Informe a data de entrada" />
-			<input type="date" name="checkout" placeholder="Informe a data de saída" />
+			<input type="number" name="quarto"
+				placeholder="Digite o número do quarto" required /> <input
+				type="date" name="checkin" placeholder="Informe a data de entrada"
+				required /> <input type="date" name="checkout"
+				placeholder="Informe a data de saída" required />
 			<button>Reservar</button>
 		</form>
 	</fieldset>
-	<form action="reservar" method="get">
+	<form id="frm-consultar" action="reservar" method="get">
 		<button>Consultar Reservas</button>
 	</form>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

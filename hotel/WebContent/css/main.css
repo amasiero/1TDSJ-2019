@@ -1,0 +1,14 @@
+input {
+	display:block;
+	width: 350px;
+}
+
+input:invalid+span:after {
+    content: '&#x274C;';
+    padding-left: 5px;
+}
+
+input:valid+span:after {
+    content: '&#x2714;';
+    padding-left: 5px;
+}
