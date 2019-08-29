@@ -1,3 +1,5 @@
+console.log(document.cookie);
+
 function getCookie(name) {
 	var value = "; " + document.cookie; // padroniza a divisão de caracteres
 	var parts = value.split("; " + name + "="); // separada a parte do cookie procurado
