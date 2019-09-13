@@ -19,5 +19,6 @@ public class DestroiTudoServlet extends HttpServlet{
 			throws ServletException, IOException {
 		HttpSession s = req.getSession();
 		s.setMaxInactiveInterval(0);
+		s.invalidate();
 	}
 }
