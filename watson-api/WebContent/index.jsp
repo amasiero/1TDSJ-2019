@@ -23,7 +23,8 @@
 		</div>
 	</section>
 	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-	<script type="text/javascript" src="scripts/main.js"></script>
+	<!-- Para a versão dois utilizar o script main.js -->
+	<script type="text/javascript" src="scripts/assistant.js"></script>
 	<script type="text/javascript" src="scripts/tts.js"></script>
 	<script type="text/javascript" src="scripts/stt.js"></script>
 </body>
