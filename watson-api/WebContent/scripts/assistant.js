@@ -41,7 +41,9 @@ function callBot(msg) {
 			// Codigo de sucesso
 			var respostas = JSON.parse(xhr.responseText);
 			respostas.forEach(function(resposta) {
-				createMessage(resposta, "bot");
+				console.log(resposta);
+				if(!(resposta === null) && !(resposta == ""))
+					createMessage(resposta, "bot");
 			});
 		}else{
 			// Codigo de deu ruim!

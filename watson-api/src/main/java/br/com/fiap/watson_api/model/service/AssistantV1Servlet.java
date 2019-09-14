@@ -19,7 +19,7 @@ import com.ibm.watson.assistant.v1.Assistant;
 @WebServlet(urlPatterns = "/v1")
 public class AssistantV1Servlet extends HttpServlet {
 	
-	private Context context = null;
+	private Context context;
 	private static final long serialVersionUID = -8716683257301345455L;
 
 	@Override
@@ -27,8 +27,8 @@ public class AssistantV1Servlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String msg = req.getParameter("question");
-		System.out.println(msg);
-
+		if (msg.isEmpty()) this.context = null;
+		
 		MessageResponse response = this.assistantAPICall(msg);
 		
 		resp.setContentType("application/json");
@@ -63,7 +63,7 @@ public class AssistantV1Servlet extends HttpServlet {
 				.getResult();
 		
 		this.context = response.getContext();
-
+		
 		return response;
 	}
 
