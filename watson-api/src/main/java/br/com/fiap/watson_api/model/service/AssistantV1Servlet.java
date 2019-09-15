@@ -44,7 +44,7 @@ public class AssistantV1Servlet extends HttpServlet {
 		
 		// Criando o objeto do serviço desejado
 		Assistant service = new Assistant("2018-02-16", options);
-		String workspaceId = "<apikey>";
+		String workspaceId = "<skill_id>";
 		
 		// Preparando a mensagem de envio
 		MessageInput input = new MessageInput();
@@ -63,6 +63,13 @@ public class AssistantV1Servlet extends HttpServlet {
 				.getResult();
 		
 		this.context = response.getContext();
+		
+		// Verifica se as variaveis de contexto foram totalmente preenchidas
+		// Quando o nó de dialogo for completo reinicia o contexto
+		if (response.getContext().getSystem().getProperties().get("branch_exited") != null)
+			if ((boolean) response.getContext().getSystem().getProperties().get("branch_exited") &&
+					response.getContext().getSystem().getProperties().get("branch_exited_reason").equals("completed"))
+				this.context = null;
 		
 		return response;
 	}

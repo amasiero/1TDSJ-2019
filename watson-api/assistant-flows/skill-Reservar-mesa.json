@@ -1,0 +1,415 @@
+{
+  "name": "Reservar mesa",
+  "intents": [
+    {
+      "intent": "reservar_mesa",
+      "examples": [
+        {
+          "text": "Tem mesa disponível?"
+        },
+        {
+          "text": "Quero mesa para hoje"
+        },
+        {
+          "text": "Vocês reservam mesa?"
+        },
+        {
+          "text": "Gostaria de reservar uma mesa"
+        },
+        {
+          "text": "É possível reservar uma mesa?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "endereco",
+      "examples": [
+        {
+          "text": "Qual o endereço de vocês?"
+        },
+        {
+          "text": "Onde vocês ficam?"
+        },
+        {
+          "text": "Me confirma o endereço"
+        },
+        {
+          "text": "Qual a sua localização?"
+        },
+        {
+          "text": "Onde fica o endereço?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "saudacao",
+      "examples": [
+        {
+          "text": "Bom dia"
+        },
+        {
+          "text": "Boa tarde"
+        },
+        {
+          "text": "Boa noite"
+        },
+        {
+          "text": "Olá"
+        },
+        {
+          "text": "E ai?"
+        },
+        {
+          "text": "Oi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "despedida",
+      "examples": [
+        {
+          "text": "Vai com Deus"
+        },
+        {
+          "text": "Tchaw"
+        },
+        {
+          "text": "Vou nessa"
+        },
+        {
+          "text": "Até mais"
+        },
+        {
+          "text": "Te vejo depois"
+        },
+        {
+          "text": "Até logo"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-time",
+      "values": []
+    },
+    {
+      "entity": "saudacao_formal",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Boa tarde",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Bom dia",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Boa noite",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": []
+    },
+    {
+      "entity": "sys-number",
+      "values": []
+    }
+  ],
+  "language": "pt-br",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-09-20"
+    }
+  },
+  "skill_id": "a4ba1dcd-da3a-4fce-b031-d9e4f745503d",
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "slot",
+      "parent": "node_5_1555163918682",
+      "variable": "$number",
+      "dialog_node": "slot_15_1555164119642",
+      "previous_sibling": "slot_12_1555164045953"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1555163918682",
+      "variable": "$time",
+      "dialog_node": "slot_12_1555164045953",
+      "previous_sibling": "slot_9_1555164001642"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1555163918682",
+      "dialog_node": "slot_6_1555163977692",
+      "previous_sibling": "slot_15_1555164119642"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1555163918682",
+      "variable": "$date",
+      "dialog_node": "slot_9_1555164001642"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "E ai cara! Como te ajudo hoje?"
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_2_1555163447248",
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "node_4_1555163719578",
+      "previous_sibling": "node_3_1555163509612"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "@saudacao_formal para você também!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1555163447248",
+      "metadata": {},
+      "conditions": "@saudacao_formal",
+      "dialog_node": "node_3_1555163509612"
+    },
+    {
+      "type": "standard",
+      "title": "Endereço",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Estamos na Av. Paulista, 1000 - próximo ao metrô Trianon"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_19_1555166237093",
+      "metadata": {},
+      "conditions": "#endereco",
+      "dialog_node": "node_18_1555165907250",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Que horas?"
+      },
+      "parent": "slot_12_1555164045953",
+      "event_name": "focus",
+      "dialog_node": "handler_14_1555164045953",
+      "previous_sibling": "handler_13_1555164045953"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_12_1555164045953",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_13_1555164045953"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_6_1555163977692",
+      "event_name": "input",
+      "dialog_node": "handler_7_1555163977692"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Para quando?"
+      },
+      "parent": "slot_9_1555164001642",
+      "event_name": "focus",
+      "dialog_node": "handler_11_1555164001642",
+      "previous_sibling": "handler_10_1555164001642"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_9_1555164001642",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_10_1555164001642"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Para quantas pessoas?"
+      },
+      "parent": "slot_15_1555164119642",
+      "event_name": "focus",
+      "dialog_node": "handler_17_1555164119642",
+      "previous_sibling": "handler_16_1555164119642"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_15_1555164119642",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_16_1555164119642"
+    },
+    {
+      "type": "standard",
+      "title": "Despedida",
+      "output": {
+        "text": {
+          "values": [
+            "Obrigado pela visita!",
+            "Até mais!",
+            "Volte sempre!",
+            "Foi tarde!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "#despedida",
+      "dialog_node": "node_1_1555163191990",
+      "previous_sibling": "node_5_1555163918682"
+    },
+    {
+      "type": "frame",
+      "title": "Reservar mesa",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Perfeito! Reserva para $date às $time para $number pessoas confirmada. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Obrigado!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "fallback": "leave"
+      },
+      "conditions": "#reservar_mesa",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_5_1555163918682",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_2_1555163447248",
+      "digress_out_slots": "allow_returning"
+    },
+    {
+      "type": "folder",
+      "title": "FAQ",
+      "metadata": {},
+      "digress_in": "returns",
+      "dialog_node": "node_19_1555166237093",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Saudação",
+      "output": {},
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#saudacao",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_2_1555163447248",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_19_1555166237093"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "text": {
+          "values": [
+            "Eu não entendi. Você pode tentar reformular a frase.",
+            "Você pode reformular sua afirmação? Eu não estou entendendo.",
+            "Eu não entendi o sentido."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_1_1555163191990"
+    },
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá. Como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    }
+  ],
+  "workspace_id": "a4ba1dcd-da3a-4fce-b031-d9e4f745503d",
+  "counterexamples": [],
+  "system_settings": {},
+  "learning_opt_out": false,
+  "status": "Available"
+}

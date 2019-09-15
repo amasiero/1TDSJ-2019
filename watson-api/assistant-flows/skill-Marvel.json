@@ -1,0 +1,323 @@
+{
+  "name": "Marvel",
+  "intents": [
+    {
+      "intent": "cumprimento",
+      "examples": [
+        {
+          "text": "E ai!"
+        },
+        {
+          "text": "oi"
+        },
+        {
+          "text": "ola"
+        },
+        {
+          "text": "hey"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "consultar_herois",
+      "examples": [
+        {
+          "text": "quem é o heroi"
+        },
+        {
+          "text": "me fale sobre o"
+        },
+        {
+          "text": "me diga quem é"
+        },
+        {
+          "text": "me explique sobre o heroi"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "herois",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "thor",
+          "synonyms": [
+            "loiro da marreta",
+            "deus do trovão",
+            "filho de odin",
+            "deus do trovao"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "iron man",
+          "synonyms": [
+            "homem de ferro",
+            "tony stark",
+            "stark",
+            "tony"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "captain america",
+          "synonyms": [
+            "capitão américa",
+            "steve rogers",
+            "america"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "hulk",
+          "synonyms": [
+            "bruce banner",
+            "o cara verde",
+            "bruce",
+            "banner"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "language": "pt-br",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-09-20"
+    }
+  },
+  "skill_id": "43afe170-62ec-4d06-90a0-b3f7055ecf4b",
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Mas qual o herói?"
+      },
+      "parent": "slot_2_1560006576250",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1560006576250",
+      "previous_sibling": "handler_3_1560006576250"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_2_1560006576250",
+      "context": {
+        "herois": "@herois"
+      },
+      "conditions": "@herois",
+      "event_name": "input",
+      "dialog_node": "handler_3_1560006576250"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Iron Man é o melhor!"
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_1_1560006446942",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "@herois:(iron man)",
+      "dialog_node": "node_9_1560006785512",
+      "previous_sibling": "node_8_1560006709984"
+    },
+    {
+      "type": "response_condition",
+      "output": {},
+      "parent": "node_1_1560006446942",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_10_1560006942925",
+      "previous_sibling": "node_9_1560006785512"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1560006446942",
+      "variable": "$herois",
+      "dialog_node": "slot_2_1560006576250",
+      "previous_sibling": "node_10_1560006942925"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thor é top!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1560006446942",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "@herois:thor",
+      "dialog_node": "node_8_1560006709984"
+    },
+    {
+      "type": "frame",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O $herois é top!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#consultar_herois",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1560006446942",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1559998296023",
+      "digress_out_slots": "allow_all"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_1_1560006446942"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Oi!"
+              },
+              {
+                "text": "Olá!"
+              },
+              {
+                "text": "E ai!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#cumprimento",
+      "dialog_node": "node_1_1559998296023",
+      "previous_sibling": "node_11_1560008601099"
+    },
+    {
+      "type": "standard",
+      "title": "apagar variavel",
+      "output": {
+        "generic": []
+      },
+      "context": {
+        "herois": null
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "Bem-vindo"
+      },
+      "conditions": "$herois != null",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_11_1560008601099",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá. Como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo",
+      "previous_sibling": "node_4_1565403848872"
+    },
+    {
+      "type": "standard",
+      "title": "Inicio de conversa",
+      "output": {
+        "generic": []
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "Bem-vindo"
+      },
+      "conditions": "conversation_start",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_4_1565403848872"
+    }
+  ],
+  "workspace_id": "79c64eee-0117-40ac-b2e4-c25252eb72c7",
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    }
+  },
+  "learning_opt_out": false,
+  "status": "Available"
+}
