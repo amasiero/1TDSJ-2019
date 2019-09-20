@@ -1,4 +1,4 @@
-package br.com.fiap.watson_api.model.service;
+package br.com.fiap.watson_api.control.web;
 
 import java.io.IOException;
 
