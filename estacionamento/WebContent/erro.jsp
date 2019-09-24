@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br" dir="ltr">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Avenger´s Park</title>
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<h1>Avenger´s Park</h1>
-	<h2>Erro:</h2>
-	<h3>${erro}</h3>
-	<a href="index.jsp">Voltar para home</a>
+	<section class="container">
+		<h1 class="title">Avenger´s Park</h1>
+		<h2 class="subtitle">Erro:</h2>
+		<h3 class="subsubtitle">${erro}</h3>
+		<a href="index.jsp">Voltar para a Home</a>
+	</section>
 </body>
 </html>

@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+  background-color: #161616;
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  color: #e60775;
+  font-size: 60px;
+  margin: 30px 0;
+}
+
+.subtitle {
+  color: #e60775;
+  font-size: 30px;
+  margin: 30px 0;
+}
+
+.form-login {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px #000;
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  justify-content: center;
+  width: 600px;
+  margin-top: 7%;
+}
+
+label {
+  color: #e60775;
+  font-size: 20px;
+}
+
+input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  color: #e60775;
+  display: block;
+  font-size: 16px;
+  margin: 10px auto 30px auto;
+  padding: 18px 5px;
+  width: 350px;
+}
+
+button {
+  background-color: #e60775;
+  border: 0;
+  border-radius: 2px;
+  color: #161616;
+  cursor: pointer;
+  padding: 18px 32px;
+  font-size: 16px;
+  font-weight: bold;
+  float: right;
+  transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-ransition: all .3s ease-in-out;
+}
+
+button:hover {
+  background-color: #161616;
+  color: #e60775;
+}
+
+.big {
+  width: 100%;
+}
+
+.form-valet {
+  width: 80%;
+  margin: 30px auto;
+}
+
+hr {
+  border: .5px dotted #e60775;
+  width: 100%;
+}
+
+.tabela-valet {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 50px;
+}
+
+td, th {
+  border: 1px solid rgba(230, 7, 117, 0.7);
+  padding: 10px;
+  width: 5em;
+}
+
+th {
+  color: #e60775;
+  font-size: 20px;
+}
+
+td {
+  color: #ddd;
+  font-size: 18px;
+  text-align: center;
+}

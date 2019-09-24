@@ -13,71 +13,72 @@
 %> --%>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <title>Avenger´s Park</title>
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<h1>Avenger´s Park</h1>
-	<c:choose>
-		<c:when test="${not empty usuario}">
-			<p>
-				Seja bem-vindo, ${usuario.nome}! <a href="logout">Sair</a>
-			</p>
-			<fieldset>
-				<legend>Entre com os dados do veiculo:</legend>
-				<form action="registrar_entrada" method="post">
-					<label>Marca: <input type="text" name="marca"
-						placeholder="Digite a marca do veiculo" />
-					</label> <label>Modelo: <input type="text" name="modelo"
-						placeholder="Digite o modelo do veiculo" />
-					</label> <label>Placa: <input type="text" name="placa"
-						placeholder="Digite a placa do veiculo" />
-					</label>
-					<button>Registrar Entrada</button>
-				</form>
-			</fieldset>
-			<hr />
-			<c:if test="${not empty valet}">
-				<h3>Saída efetuada com sucesso</h3>
-				<p>Veiculo: ${valet.veiculo.marca} ${valet.veiculo.modelo}</p>
-				<p>Placa: ${valet.veiculo.placa}</p>
-				<p>Entrada: ${valet.entradaEmTexto}</p>
-				<p>Saída: ${valet.saidaEmTexto}</p>
-				<p>Pagou: R$ ${valet.preco }</p>
+	<section class="container">
+		<h1 class="title">Avenger´s Park</h1>
+		<c:choose>
+			<c:when test="${not empty usuario}">
+				<p>
+					Seja bem-vindo, ${usuario.nome}! <a href="logout">Sair</a>
+				</p>
+				<div class="form-valet">
+					<form action="registrar_valet" method="post">
+						<label>Placa: <input class="big" type="text" name="placa"
+							placeholder="Informe a placa do veículo" required />
+						</label> <label>Marca: <input class="big" type="text" name="marca"
+							placeholder="Informe a marca do veículo" required />
+						</label> <label>Modelo: <input class="big" type="text"
+							name="modelo" placeholder="Informe o modelo do veículo" required />
+						</label>
+						<button>Registrar</button>
+					</form>
+				</div>
 				<hr />
-			</c:if>
-			<h2>Estacionados</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Marca</th>
-						<th>Modelo</th>
-						<th>Placa</th>
-						<th>Entrada</th>
-						<th>Ações</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="valet" items="${valets}">
-						<tr>
-							<td>${valet.veiculo.marca}</td>
-							<td>${valet.veiculo.modelo}</td>
-							<td>${valet.veiculo.placa}</td>
-							<td>${valet.entradaEmTexto}</td>
-							<td><a href="registrar_saida?id=${valet.id}"> Efetuar
-									Saída </a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:when>
-		<c:otherwise>
-			<h2>You shall not pass!</h2>
-			<h3>Faça a autenticação para acessar!</h3>
-			<a href="index.jsp">Voltar para tela de login.</a>
-		</c:otherwise>
-	</c:choose>
+				<c:if test="${not empty valet}">
+					<h3>Saída efetuada com sucesso</h3>
+					<p>Veiculo: ${valet.veiculo.marca} ${valet.veiculo.modelo}</p>
+					<p>Placa: ${valet.veiculo.placa}</p>
+					<p>Entrada: ${valet.entradaEmTexto}</p>
+					<p>Saída: ${valet.saidaEmTexto}</p>
+					<p>Pagou: R$ ${valet.preco }</p>
+					<hr />
+				</c:if>
+				<div class="tabela-valet">
+					<h1 class="subtitle">Veículos Estacionados</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Placa</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Entrada</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="valet" items="${valets}">
+								<tr>
+									<td>${valet.veiculo.placa}</td>
+									<td>${valet.veiculo.marca}</td>
+									<td>${valet.veiculo.modelo}</td>
+									<td>${valet.entradaEmTexto}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<h2 class="subtitle">You shall not pass!</h2>
+				<h3 class="subsubtitle">Faça a autenticação para acessar!</h3>
+				<a href="index.jsp">Voltar para tela de login.</a>
+			</c:otherwise>
+		</c:choose>
+	</section>
 </body>
 </html>
