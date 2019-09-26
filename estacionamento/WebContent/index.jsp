@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
 <head>
@@ -8,10 +9,14 @@
 <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+	<c:if test="${not empty usuario}">
+		<c:redirect url="valet.jsp"/>
+	</c:if>
 	<section class="container">
 		<div class="form-login">
 			<h1 class="title">Avenger´s Park</h1>
-			<form action="login" method="post">
+			<form action="controller" method="post">
+				<input type="hidden" name="tarefa" value="Login" />
 				<label>E-mail: <input type="email" name="email"
 					placeholder="Informe seu e-mail ou nome de usuário" required />
 				</label> <label>Senha: <input type="password" name="senha"

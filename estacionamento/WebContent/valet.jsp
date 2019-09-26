@@ -20,15 +20,17 @@
 <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+	<jsp:useBean id="valets" class="br.com.fiap.estacionamento.model.business.ValetBO"/>
 	<section class="container">
 		<h1 class="title">Avenger´s Park</h1>
 		<c:choose>
 			<c:when test="${not empty usuario}">
 				<p>
-					Seja bem-vindo, ${usuario.nome}! <a href="logout">Sair</a>
+					Seja bem-vindo, ${usuario.nome}! <a href="controller?tarefa=Logout">Sair</a>
 				</p>
 				<div class="form-valet">
-					<form action="registrar_valet" method="post">
+					<form action="controller" method="post">
+						<input type="hidden" name="tarefa" value="Estaciona" />
 						<label>Placa: <input class="big" type="text" name="placa"
 							placeholder="Informe a placa do veículo" required />
 						</label> <label>Marca: <input class="big" type="text" name="marca"
@@ -58,15 +60,18 @@
 								<th>Marca</th>
 								<th>Modelo</th>
 								<th>Entrada</th>
+								<th>Ações</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="valet" items="${valets}">
+							<c:forEach var="valet" items="${valets.consultarPatio()}">
 								<tr>
 									<td>${valet.veiculo.placa}</td>
 									<td>${valet.veiculo.marca}</td>
 									<td>${valet.veiculo.modelo}</td>
 									<td>${valet.entradaEmTexto}</td>
+									<td><a href="controller?id=${valet.id}&tarefa=Estaciona">
+									Efetuar	Saída </a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
