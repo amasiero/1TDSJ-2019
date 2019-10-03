@@ -16,13 +16,12 @@
 		<div class="form-login">
 			<h1 class="title">Avenger´s Park</h1>
 			<form action="controller" method="post">
-				<input type="hidden" name="tarefa" value="Login" />
 				<label>E-mail: <input type="email" name="email"
 					placeholder="Informe seu e-mail ou nome de usuário" required />
 				</label> <label>Senha: <input type="password" name="senha"
 					placeholder="Informe sua senha" required />
 				</label>
-				<button>Acessar</button>
+				<button name="tarefa" value="Login">Acessar</button>
 			</form>
 		</div>
 	</section>

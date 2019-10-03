@@ -22,15 +22,16 @@
 <body>
 	<jsp:useBean id="valets" class="br.com.fiap.estacionamento.model.business.ValetBO"/>
 	<section class="container">
-		<h1 class="title">Avenger´s Park</h1>
 		<c:choose>
 			<c:when test="${not empty usuario}">
+				<header>
+				<h1>Avenger´s Park</h1>
 				<p>
 					Seja bem-vindo, ${usuario.nome}! <a href="controller?tarefa=Logout">Sair</a>
 				</p>
+				</header>
 				<div class="form-valet">
 					<form action="controller" method="post">
-						<input type="hidden" name="tarefa" value="Estaciona" />
 						<label>Placa: <input class="big" type="text" name="placa"
 							placeholder="Informe a placa do veículo" required />
 						</label> <label>Marca: <input class="big" type="text" name="marca"
@@ -38,7 +39,7 @@
 						</label> <label>Modelo: <input class="big" type="text"
 							name="modelo" placeholder="Informe o modelo do veículo" required />
 						</label>
-						<button>Registrar</button>
+						<button name="tarefa" value="Estaciona">Registrar</button>
 					</form>
 				</div>
 				<hr />
@@ -79,6 +80,7 @@
 				</div>
 			</c:when>
 			<c:otherwise>
+				<h1 class="title">Avenger´s Park</h1>
 				<h2 class="subtitle">You shall not pass!</h2>
 				<h3 class="subsubtitle">Faça a autenticação para acessar!</h3>
 				<a href="index.jsp">Voltar para tela de login.</a>
