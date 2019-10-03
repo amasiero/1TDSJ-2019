@@ -168,3 +168,14 @@ header>p>a:hover {
 	font-weight: bolder;
 	text-decoration: underline;
 }
+
+.ticket {
+	width: 60%;
+	color: #e60775;
+	margin: 10px auto;
+	border: 2px dotted #e60775;
+}
+
+.ticket>h3 {
+	font-size: 24px;
+}

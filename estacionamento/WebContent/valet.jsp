@@ -44,12 +44,14 @@
 				</div>
 				<hr />
 				<c:if test="${not empty valet}">
-					<h3>Saída efetuada com sucesso</h3>
-					<p>Veiculo: ${valet.veiculo.marca} ${valet.veiculo.modelo}</p>
-					<p>Placa: ${valet.veiculo.placa}</p>
-					<p>Entrada: ${valet.entradaEmTexto}</p>
-					<p>Saída: ${valet.saidaEmTexto}</p>
-					<p>Pagou: R$ ${valet.preco }</p>
+					<div class="ticket">
+						<h3>Saída efetuada com sucesso</h3>
+						<p>Veiculo: ${valet.veiculo.marca} ${valet.veiculo.modelo}</p>
+						<p>Placa: ${valet.veiculo.placa}</p>
+						<p>Entrada: ${valet.entradaEmTexto}</p>
+						<p>Saída: ${valet.saidaEmTexto}</p>
+						<p>Pagou: R$ ${valet.preco }</p>
+					</div>
 					<hr />
 				</c:if>
 				<div class="tabela-valet">
