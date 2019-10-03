@@ -6,11 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import br.com.fiap.estacionamento.model.business.UsuarioBO;
 import br.com.fiap.estacionamento.model.entities.Usuario;
+import br.com.fiap.estacionamento.model.exceptions.AutenticacaoException;
 
 public class Login implements Tarefa {
 
 	@Override
-	public String processarRequest(HttpServletRequest req, HttpServletResponse resp) {
+	public String processarRequest(HttpServletRequest req, HttpServletResponse resp) throws AutenticacaoException {
 		
 		String email = req.getParameter("email");
 		String senha = req.getParameter("senha");
@@ -22,8 +23,7 @@ public class Login implements Tarefa {
 			session.setAttribute("usuario", usuario);
 			return "valet.jsp";
 		} else {
-			req.setAttribute("erro", "Usuário e/ou Senha não existem.");
-			return "erro.jsp";
+			throw new AutenticacaoException("Usuário e/ou senha inválidos");
 		}
 		
 	}

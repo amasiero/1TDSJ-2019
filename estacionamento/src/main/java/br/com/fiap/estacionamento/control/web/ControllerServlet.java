@@ -17,6 +17,7 @@ public class ControllerServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String tarefa = req.getParameter("tarefa");
+		if(tarefa == null || tarefa.isEmpty()) throw new IllegalArgumentException("A tarefa não foi informada");
 		tarefa = "br.com.fiap.estacionamento.control.web." + tarefa;
 		
 		try {
@@ -29,6 +30,8 @@ public class ControllerServlet extends HttpServlet {
 				IllegalAccessException | 
 				InstantiationException e) {
 			e.printStackTrace();
+		}catch(RuntimeException e) {
+			throw e;
 		}
 		
 		

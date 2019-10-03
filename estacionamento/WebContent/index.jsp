@@ -21,7 +21,7 @@
 				</label> <label>Senha: <input type="password" name="senha"
 					placeholder="Informe sua senha" required />
 				</label>
-				<button name="tarefa" value="Login">Acessar</button>
+				<button name="tarefa">Acessar</button>
 			</form>
 		</div>
 	</section>
