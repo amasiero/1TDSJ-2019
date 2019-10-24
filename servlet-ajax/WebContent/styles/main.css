@@ -1,0 +1,12 @@
+body {
+	color: #686868;
+}
+
+input[type="text"] {
+	padding: 10px 20px;
+	width: 96%;
+}
+
+.invisivel {
+	display: none;
+}
