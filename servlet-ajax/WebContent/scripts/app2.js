@@ -3,20 +3,26 @@ window.onload = carregarDados();
 function carregarDados() {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "consultar", true);
-	xhr.onloadstart = function() {
-		var p = document.createElement("p");
-		p.textContent = "Carregando...";
-		document.querySelector("body").appendChild(p);
-	}
+	
 	xhr.addEventListener("load", function() {
 		if(xhr.status == 200) {
-			document.querySelector("p").classList.add("invisivel");
 			var empresas = JSON.parse(xhr.responseText);
 			empresas.forEach(function(empresa) {
 				criarItemLista(empresa.nome);
 			});
 		}
 	});
+	
+	xhr.addEventListener("loadstart", function() {
+        var loading = document.querySelector(".loading");
+        loading.classList.add("active");
+    });
+    
+    xhr.addEventListener("loadend", function() {
+        var loading = document.querySelector(".loading");
+        loading.classList.remove("active");
+    });
+	
 	xhr.send();
 }
 
