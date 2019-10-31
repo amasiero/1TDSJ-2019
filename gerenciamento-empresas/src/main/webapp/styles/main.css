@@ -1,0 +1,64 @@
+body {
+	background-color: #eee;
+	color: #686868;
+	font: 16px Roboto;
+}
+
+.container {
+	background: #fff;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .2);
+	margin-top: 20px; padding : 15px;
+	width: 97%;
+	padding: 15px;
+}
+
+.container:hover {
+	box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
+}
+
+ul li {
+	list-style: none;
+	line-height: 20px;
+}
+
+ul li:before {
+	content: '\f0a9';
+	margin-right: 15px;
+	font-family: FontAwesome;
+}
+
+input[type="text"] {
+	font: 14px Roboto;
+	padding: 10px 20px;
+	width: 96%;
+}
+
+input[type="text"]::placeholder {
+	opacity: .5;
+}
+
+.invisivel {
+	display: none;
+}
+
+.loading {
+	background: rgba(0, 0, 0, 0.8);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+}
+
+.loading.active {
+	display: block;
+}
+
+#dots {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -32px 0 0 -32px;
+}
